@@ -15,7 +15,8 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    open: true
+    open: true,
+    hot: true
   },
   module: {
     rules: [
@@ -27,13 +28,12 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
           'style-loader',
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'postcss-loader',
-          'sass-loader'
+          'postcss-loader'
         ]
       }
     ]
@@ -52,8 +52,7 @@ module.exports = {
     new WebpackMd5Hash(),
     new StyleLintPlugin({
       configFile: './stylelint.config.js',
-      files: './src/scss/*.scss',
-      syntax: 'scss'
+      files: './src/css/*.css'
     })
   ]
 };
